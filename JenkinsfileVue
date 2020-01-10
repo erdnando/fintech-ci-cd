@@ -6,22 +6,18 @@ node {
     
     sh "git rev-parse --short HEAD > commit-id"
 
-    tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-    appName = "hello-kenzan"
+    tag = latest   
+    appName = "front-fintech"
     registryHost = ""
     imageName = "${registryHost}${appName}:${tag}"
     env.BUILDIMG=imageName
 
     stage "Build"
     
-        sh "docker build -t erdnando/${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
+        sh "docker build -t erdnando/${imageName} -f aplicaciones/01vuejs/Dockerfile applications/01vuejs"
     
     stage "Push"
 
         sh "docker push erdnando/${imageName}"
-
-    stage "Deploy"
-
-        kubernetesDeploy configs: "applications/${appName}/k8s/*.yaml", kubeconfigId: 'minikube_kubeconfig'
 
 }
