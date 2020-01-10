@@ -4,12 +4,6 @@ FROM node:8.16.2 as builder
 #https://itnext.io/building-docker-images-from-private-git-repositories-using-ssh-login-433edf5a18f2
 
 
-#COPY github_key .
-#RUN eval $(ssh-agent) && \
-#    ssh-add github_key && \
-#    ssh-keyscan -H github.com >> /etc/ssh/ssh_known_hosts && \
-#    git clone git@github.com:erdnando/afiliacion2.0.git /opt/vue_app
-
 RUN git clone git@github.com:erdnando/afiliacion2.0.git /opt/vue_app
 
 WORKDIR /opt/vue_app
