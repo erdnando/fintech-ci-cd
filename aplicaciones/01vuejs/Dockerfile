@@ -3,7 +3,7 @@ FROM node:8.16.2 as builder
 
 #https://itnext.io/building-docker-images-from-private-git-repositories-using-ssh-login-433edf5a18f2
 
-
+ARG CACHE_DATE=2029-01-01
 RUN git clone https://github.com/erdnando/afiliacion2.0.git /opt/vue_app
 
 WORKDIR /opt/vue_app
