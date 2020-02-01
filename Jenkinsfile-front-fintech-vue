@@ -18,6 +18,9 @@ node {
     
     stage "Push"
         
-        sh "docker push erdnando/front-fintech:latest"
+        
+         withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
+            sh "docker push erdnando/front-fintech:latest"
+          }
 
 }
