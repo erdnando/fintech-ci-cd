@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-a
+  labels:
+    app: front-a
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: front-a
+  template:
+    metadata:
+      labels:
+        app: front-a
+    spec:
+      containers:
+      - name: front-a
+        image: erdnando/front-fintech:latest
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  front-lb-a
+  labels:
+    app: front-lb-a
+spec:
+  selector:
+    app:  front-a
+  type:  LoadBalancer
+  ports:
+  - protocol: "TCP"
+    # Port accessible inside cluster
+    port: 80
+    # Port to forward to inside the pod
+    targetPort: 80
+    # Port accessible outside cluster
+    nodePort: 30001
