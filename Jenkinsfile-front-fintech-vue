@@ -17,7 +17,7 @@ node {
         sh "docker build -t erdnando/front-fintech:latest -f aplicaciones/01vuejs/Dockerfile aplicaciones/01vuejs"
     
     stage "Push"
-
+        sh "docker login docker.io"
         sh "docker push erdnando/front-fintech:latest"
 
 }
