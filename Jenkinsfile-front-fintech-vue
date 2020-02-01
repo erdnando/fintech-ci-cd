@@ -22,13 +22,4 @@ node {
          withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
             sh "docker push erdnando/front-fintech:latest"
           }
-          
-      stage "Deploy"
-      
-          sh "kubectl delete deployment front-a"
-          
-          sh "kubectl delete service front-lb-a"
-          
-          sh "kubectl apply -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/front-a-deployment.yaml"
-
 }
