@@ -14,10 +14,10 @@ node {
 
     stage "Build"
     
-        sh "docker build -t erdnando/${imageName} -f aplicaciones/01vuejs/Dockerfile aplicaciones/01vuejs"
+        sh "docker build -t erdnando/front-fintech:latest -f aplicaciones/01vuejs/Dockerfile aplicaciones/01vuejs"
     
     stage "Push"
 
-        sh "docker push erdnando/${imageName}"
+        sh "docker push erdnando/front-fintech:latest"
 
 }
