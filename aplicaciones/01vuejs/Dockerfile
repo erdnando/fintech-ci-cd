@@ -1,9 +1,5 @@
 FROM node:13.7.0 as builder
-
-
 #https://itnext.io/building-docker-images-from-private-git-repositories-using-ssh-login-433edf5a18f2
-
-ADD https://api.github.com/repos/$USER/$REPO/git/refs/heads/$BRANCH version.json
 RUN git clone https://github.com/erdnando/afiliacion2.0.git /opt/vue_app
 
 WORKDIR /opt/vue_app
