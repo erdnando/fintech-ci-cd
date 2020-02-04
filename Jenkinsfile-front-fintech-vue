@@ -11,15 +11,16 @@ node {
     registryHost = ""
     imageName = "${registryHost}${appName}:${tag}"
     env.BUILDIMG=imageName
-
+    
     stage "Build"
     
-        sh "docker build -t erdnando/front-fintech:latest -f aplicaciones/01vuejs/Dockerfile aplicaciones/01vuejs"
+       #sh "docker build -t erdnando/front-fintech:latest -f aplicaciones/01vuejs/Dockerfile aplicaciones/01vuejs"
+        sh "docker build -t mx.com.smi.services:30402/front-fintech:latest -f aplicaciones/01vuejs/Dockerfile aplicaciones/01vuejs"
     
     stage "Push"
-        
-        
-         withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
-            sh "docker push erdnando/front-fintech:latest"
+
+         withDockerRegistry([ credentialsId: "docker-private-credentials", url: "" ]) {
+            #sh "docker push erdnando/front-fintech:latest"
+            sh "docker push mx.com.smi.services:30402/front-fintech:latest"
           }
 }
