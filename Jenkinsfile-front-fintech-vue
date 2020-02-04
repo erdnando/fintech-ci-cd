@@ -18,7 +18,7 @@ node {
     
     stage "Push"
 
-         withDockerRegistry([ credentialsId: "docker-private-credentials", url: "mx.com.smi.services:30402" ]) {
+         withDockerRegistry([ credentialsId: "docker-private-credentials", url: "http://mx.com.smi.services:30402" ]) {
             sh "docker push mx.com.smi.services:30402/front-fintech:latest"
           }
 }
