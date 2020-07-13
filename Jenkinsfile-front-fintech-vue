@@ -18,7 +18,7 @@ node {
     
     stage "Push"
 
-         withDockerRegistry([ credentialsId: "docker-private-credentials", url: "http://operaciones:5000" ]) {
+         withDockerRegistry([ credentialsId: "docker-private-credentials", url: "operaciones:5000" ]) {
             sh "docker push operaciones:5000/front-fintech:latest"
           }
 }
