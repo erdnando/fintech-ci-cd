@@ -14,11 +14,11 @@ node {
     
     stage "Build"
     
-        sh "docker build -t operaciones:5000/front-fintech:latest -f aplicaciones/01vuejs/Dockerfile aplicaciones/01vuejs"
+        sh "docker build -t localhost:5000/front-fintech:latest -f aplicaciones/01vuejs/Dockerfile aplicaciones/01vuejs"
     
     stage "Push"
 
-         withDockerRegistry([ credentialsId: "docker-private-credentials", url: "http://operaciones:5000" ]) {
-            sh "docker push operaciones:5000/front-fintech:latest"
+         withDockerRegistry([ credentialsId: "docker-private-credentials", url: "http://localhost:5000" ]) {
+            sh "docker push localhost:5000/front-fintech:latest"
           }
 }
