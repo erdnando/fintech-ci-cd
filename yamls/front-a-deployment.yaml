@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-a
+  labels:
+    app: front-a
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: front-a
+  template:
+    metadata:
+      labels:
+        app: front-a
+    spec:
+      containers:
+      - name: front-a
+        #from docker hub  erdnando/front-fintech:latest
+        #from private repo    mx.com.smi.services:30402/front-fintech:latest
+        image: operaciones:5000/front-fintech:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: nexus-repositorio
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  front-lb-a
+  labels:
+    app: front-lb-a
+spec:
+  selector:
+    app:  front-a
+  type:  LoadBalancer
+  ports:
+  - protocol: "TCP"
+    # Port accessible inside cluster
+    port: 80
+    # Port to forward to inside the pod
+    targetPort: 80
+    # Port accessible outside cluster
+    nodePort: 30001
