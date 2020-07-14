@@ -24,9 +24,10 @@ node {
           
      stage "Deploy K8s"
         
-         withKubeConfig([credentialsId: 'clusterk8sconfig', serverUrl: 'https://kmaster:6443']) {
-              sh 'kubectl -n smi delete -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml'
-            }
+        kubeconfig(credentialsId: 'clusterk8sconfig', serverUrl: 'https://kmaster:6443') {
+            sh 'kubectl -n smi delete -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml'
+        }
+      
         
     
 }
