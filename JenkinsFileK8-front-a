@@ -1,0 +1,22 @@
+node {
+
+    checkout scm
+
+    env.DOCKER_API_VERSION="1.23"
+    
+    sh "git rev-parse --short HEAD > commit-id"
+
+    tag = "latest"   
+    appName = "front-fintech"
+    registryHost = ""
+    imageName = "${registryHost}${appName}:${tag}"
+    env.BUILDIMG=imageName
+    
+    stage "delete"
+    
+        sh "kubectl -n smi delete -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml"
+    
+    stage "apply"
+    
+        sh "kubectl -n smi apply -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml"
+}
