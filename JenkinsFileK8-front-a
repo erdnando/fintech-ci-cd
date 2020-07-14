@@ -14,9 +14,9 @@ node {
     
     stage "delete"
     
-        sh "kubectl -n smi delete -f https://github.com/erdnando/fintech-ci-cd/blob/master/yamls/front-a-deployment.yaml"
+        sh "kubectl -n smi delete -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml"
     
     stage "apply"
     
-        sh "kubectl -n smi apply -f https://github.com/erdnando/fintech-ci-cd/blob/master/yamls/front-a-deployment.yaml"
+        sh "kubectl -n smi apply -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml"
 }
