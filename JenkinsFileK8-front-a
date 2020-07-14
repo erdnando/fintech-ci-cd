@@ -2,15 +2,7 @@ node {
 
     checkout scm
 
-    env.DOCKER_API_VERSION="1.23"
-    
-    sh "git rev-parse --short HEAD > commit-id"
-
-    tag = "latest"   
-    appName = "front-fintech"
-    registryHost = ""
-    imageName = "${registryHost}${appName}:${tag}"
-    env.BUILDIMG=imageName
+   
     
     stage "delete"
     
