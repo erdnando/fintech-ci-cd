@@ -22,8 +22,11 @@ node {
             sh "docker push operaciones:5000/front-fintech:latest"
           }
           
-     stage "Deploy"
-    
-        sh "kubectl -n smi delete -f 'https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml'"
+     stage "Deploy K8s"
+        
+         withKubeConfig([credentialsId: 'k8sCredentials', serverUrl: 'https://kmaster:6443']) {
+              sh 'kubectl -n smi delete -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml'
+            }
+        
     
 }
