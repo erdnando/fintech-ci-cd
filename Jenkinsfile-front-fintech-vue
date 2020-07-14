@@ -21,4 +21,9 @@ node {
          withDockerRegistry([ credentialsId: "docker-private-credentials", url: "http://operaciones:5000" ]) {
             sh "docker push operaciones:5000/front-fintech:latest"
           }
+          
+     stage "Deploy"
+    
+        sh "kubectl -n smi delete -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml"
+    
 }
