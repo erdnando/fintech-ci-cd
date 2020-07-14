@@ -6,7 +6,7 @@ node {
     
     stage "delete"
     
-        sh "kubectl -n smi delete -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml"
+        sh "kubectl get all -o wide"
     
     stage "apply"
     
