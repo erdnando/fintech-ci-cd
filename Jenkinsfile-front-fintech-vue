@@ -25,7 +25,12 @@ node {
      stage "Deploy K8s delete front-a"
         
         kubeconfig(credentialsId: 'clusterk8sconfig', serverUrl: 'https://kmaster:6443') {
-            sh 'kubectl -n smi delete -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml'
+             try {
+                  sh 'kubectl -n smi delete -f https://raw.githubusercontent.com/erdnando/fintech-ci-cd/master/yamls/front-a-deployment.yaml'
+              } catch (Exception e) {
+                  sh echo "El despliegue no fue encontrado. No se ha afectado el cluster k8s"
+              }
+            
         }
         
      stage "Deploy K8s apply front-a"
