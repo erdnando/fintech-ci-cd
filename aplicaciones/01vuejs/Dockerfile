@@ -18,8 +18,8 @@ RUN cp -R /usr/share/nginx/html/fintech/images /usr/share/nginx/html/images
 #Copy facephi folder to root
 RUN cp -R /usr/share/nginx/html/fintech/facephi /usr/share/nginx/html/facephi
 #Add folder to container
-#ADD ./img /usr/share/nginx/html/img
-RUN cp -R /opt/vue_app/fintech-ci-cd/aplicaciones/01vuejs/img /usr/share/nginx/html/img
+ADD ./img /usr/share/nginx/html/img
+#RUN cp -R /opt/vue_app/fintech-ci-cd/aplicaciones/01vuejs/img /usr/share/nginx/html/img
 #COPY shell to update html index
 #COPY update-html.sh /usr/share/nginx/html/fintech/
 #RUN chmod 777 /usr/share/nginx/html/fintech/update-html.sh
@@ -43,5 +43,5 @@ RUN chmod -R 777 /usr/share/nginx/html/img
 
 EXPOSE 80
 #Copy default nginx configuration
-#COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
-RUN cp -R /opt/vue_app/fintech-ci-cd/aplicaciones/01vuejs/nginx-custom.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+#RUN cp -R /opt/vue_app/fintech-ci-cd/aplicaciones/01vuejs/nginx-custom.conf /etc/nginx/conf.d/default.conf
