@@ -49,6 +49,6 @@ RUN chown -R 1001:0 /var/cache/nginx
 EXPOSE 80
 #Copy default nginx configuration
 RUN chown -R 1001:0 /etc/nginx/conf.d/default.conf
-COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf/ 
+COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 
 #RUN cp -R /opt/vue_app/fintech-ci-cd/aplicaciones/01vuejs/nginx-custom.conf /etc/nginx/conf.d/default.conf
